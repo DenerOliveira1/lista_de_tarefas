@@ -1,4 +1,5 @@
 import 'package:localize_and_translate/localize_and_translate.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/shared.dart';
@@ -14,7 +15,6 @@ class TaskScreen extends StatefulWidget {
 
 class _TaskScreenState extends State<TaskScreen> {
   final TaskStore taskStore = TaskStore();
-
 
   @override
   void initState() {
@@ -40,17 +40,19 @@ class _TaskScreenState extends State<TaskScreen> {
             child: Column(
               children: [
                 TitleWidget(taskStore),
-                DateWidget(taskStore),
-                DoneWidget(taskStore),
+                NoteWidget(taskStore),
+                //DateWidget(taskStore),
               ],
             ),
           ),
         ),
-        bottomNavigationBar: ElevatedButton(
-          child: Text(AppStrings.buttonSave.tr()),
-          onPressed: () {
-
-          },
+        bottomNavigationBar: Observer(
+          builder: (context) {
+            return ElevatedButton(
+              onPressed: taskStore.savePressed,
+              child: Text(AppStrings.buttonSave.tr()),
+            );
+          }
         ),
       ),
     );

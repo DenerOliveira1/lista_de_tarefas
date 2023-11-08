@@ -24,6 +24,22 @@ mixin _$TasksStore on TasksStoreBase, Store {
     });
   }
 
+  late final _$tasksFilteredAtom =
+      Atom(name: 'TasksStoreBase.tasksFiltered', context: context);
+
+  @override
+  List<TaskModel> get tasksFiltered {
+    _$tasksFilteredAtom.reportRead();
+    return super.tasksFiltered;
+  }
+
+  @override
+  set tasksFiltered(List<TaskModel> value) {
+    _$tasksFilteredAtom.reportWrite(value, super.tasksFiltered, () {
+      super.tasksFiltered = value;
+    });
+  }
+
   late final _$loadingAtom =
       Atom(name: 'TasksStoreBase.loading', context: context);
 
@@ -74,6 +90,7 @@ mixin _$TasksStore on TasksStoreBase, Store {
   String toString() {
     return '''
 tasks: ${tasks},
+tasksFiltered: ${tasksFiltered},
 loading: ${loading},
 dateSelected: ${dateSelected}
     ''';

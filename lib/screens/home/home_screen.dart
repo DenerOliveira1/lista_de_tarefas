@@ -1,12 +1,16 @@
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../shared/shared.dart';
+import '../../stores/stores.dart';
 import './widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final TasksStore tasksStore = GetIt.I<TasksStore>();
+
+  HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,8 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          CalendarWidget(),
+          CalendarWidget(tasksStore),
+          TasksWidget(tasksStore)
         ],
       ),
       floatingActionButton: FloatingActionButton(

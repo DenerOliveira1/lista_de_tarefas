@@ -1,14 +1,13 @@
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
 import '../../../stores/stores.dart';
 
 class CalendarWidget extends StatelessWidget {
-  final TasksStore tasksStore = GetIt.I<TasksStore>();
+  final TasksStore tasksStore;
 
-  CalendarWidget({super.key});
+  const CalendarWidget(this.tasksStore, {super.key});
 
   @override
   Widget build(BuildContext context) {

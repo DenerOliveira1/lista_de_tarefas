@@ -3,11 +3,15 @@
   "appBarEditTask": "Edit task",
 
   "titleError": "Invalid title",
+  "noteError": "Invalid note",
 
   "taskFormFieldTitle": "Title",
   "taskFormFieldTitleHintText": "Enter a title",
+  "taskFormFieldNote": "Note",
+  "taskFormFieldNoteHintText": "Enter a note",
   "taskFormFieldDone": "Done?",
   "taskFormFieldDate": "Date",
+  "taskFormFieldTime": "Time",
 
   "buttonSave": "Save",
 

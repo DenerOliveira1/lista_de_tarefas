@@ -9,7 +9,7 @@ final GoRouter routers = GoRouter(
     GoRoute(
       path: AppStrings.homeRoute,
       builder: (BuildContext context, GoRouterState state) {
-        return const SafeArea(
+        return SafeArea(
           child: HomeScreen(),
         );
       },

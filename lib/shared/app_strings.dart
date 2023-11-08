@@ -17,12 +17,16 @@ class AppStrings {
 
   /// errors
   static const titleError = 'titleError';
+  static const noteError = 'noteError';
 
   /// Form Fields
   static const taskFormFieldTitleHintText = 'taskFormFieldTitleHintText';
   static const taskFormFieldTitle = 'taskFormFieldTitle';
+  static const taskFormFieldNoteHintText = 'taskFormFieldNoteHintText';
+  static const taskFormFieldNote = 'taskFormFieldNote';
   static const taskFormFieldDone = 'taskFormFieldDone';
   static const taskFormFieldDate = 'taskFormFieldDate';
+  static const taskFormFieldTime = 'taskFormFieldTime';
 
   /// Buttons
   static const buttonSave = 'buttonSave';

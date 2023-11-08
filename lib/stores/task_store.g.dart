@@ -16,6 +16,27 @@ mixin _$TaskStore on TaskStoreBase, Store {
       (_$titleErrorComputed ??= Computed<String?>(() => super.titleError,
               name: 'TaskStoreBase.titleError'))
           .value;
+  Computed<String?>? _$noteErrorComputed;
+
+  @override
+  String? get noteError =>
+      (_$noteErrorComputed ??= Computed<String?>(() => super.noteError,
+              name: 'TaskStoreBase.noteError'))
+          .value;
+  Computed<bool>? _$isFormValidComputed;
+
+  @override
+  bool get isFormValid =>
+      (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid,
+              name: 'TaskStoreBase.isFormValid'))
+          .value;
+  Computed<VoidCallback?>? _$savePressedComputed;
+
+  @override
+  VoidCallback? get savePressed => (_$savePressedComputed ??=
+          Computed<VoidCallback?>(() => super.savePressed,
+              name: 'TaskStoreBase.savePressed'))
+      .value;
 
   late final _$successAtom =
       Atom(name: 'TaskStoreBase.success', context: context);
@@ -79,18 +100,48 @@ mixin _$TaskStore on TaskStoreBase, Store {
     });
   }
 
+  late final _$noteAtom = Atom(name: 'TaskStoreBase.note', context: context);
+
+  @override
+  String get note {
+    _$noteAtom.reportRead();
+    return super.note;
+  }
+
+  @override
+  set note(String value) {
+    _$noteAtom.reportWrite(value, super.note, () {
+      super.note = value;
+    });
+  }
+
   late final _$dateAtom = Atom(name: 'TaskStoreBase.date', context: context);
 
   @override
-  DateTime get date {
+  DateTime? get date {
     _$dateAtom.reportRead();
     return super.date;
   }
 
   @override
-  set date(DateTime value) {
+  set date(DateTime? value) {
     _$dateAtom.reportWrite(value, super.date, () {
       super.date = value;
+    });
+  }
+
+  late final _$timeAtom = Atom(name: 'TaskStoreBase.time', context: context);
+
+  @override
+  TimeOfDay? get time {
+    _$timeAtom.reportRead();
+    return super.time;
+  }
+
+  @override
+  set time(TimeOfDay? value) {
+    _$timeAtom.reportWrite(value, super.time, () {
+      super.time = value;
     });
   }
 
@@ -109,6 +160,14 @@ mixin _$TaskStore on TaskStoreBase, Store {
     });
   }
 
+  late final _$_saveAsyncAction =
+      AsyncAction('TaskStoreBase._save', context: context);
+
+  @override
+  Future<void> _save() {
+    return _$_saveAsyncAction.run(() => super._save());
+  }
+
   late final _$TaskStoreBaseActionController =
       ActionController(name: 'TaskStoreBase', context: context);
 
@@ -118,6 +177,39 @@ mixin _$TaskStore on TaskStoreBase, Store {
         name: 'TaskStoreBase.setTitle');
     try {
       return super.setTitle(value);
+    } finally {
+      _$TaskStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setNote(String value) {
+    final _$actionInfo = _$TaskStoreBaseActionController.startAction(
+        name: 'TaskStoreBase.setNote');
+    try {
+      return super.setNote(value);
+    } finally {
+      _$TaskStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setDate(DateTime? value) {
+    final _$actionInfo = _$TaskStoreBaseActionController.startAction(
+        name: 'TaskStoreBase.setDate');
+    try {
+      return super.setDate(value);
+    } finally {
+      _$TaskStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setTime(TimeOfDay? value) {
+    final _$actionInfo = _$TaskStoreBaseActionController.startAction(
+        name: 'TaskStoreBase.setTime');
+    try {
+      return super.setTime(value);
     } finally {
       _$TaskStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -135,26 +227,20 @@ mixin _$TaskStore on TaskStoreBase, Store {
   }
 
   @override
-  void setDate(DateTime value) {
-    final _$actionInfo = _$TaskStoreBaseActionController.startAction(
-        name: 'TaskStoreBase.setDate');
-    try {
-      return super.setDate(value);
-    } finally {
-      _$TaskStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 success: ${success},
 error: ${error},
 loading: ${loading},
 title: ${title},
+note: ${note},
 date: ${date},
+time: ${time},
 done: ${done},
-titleError: ${titleError}
+titleError: ${titleError},
+noteError: ${noteError},
+isFormValid: ${isFormValid},
+savePressed: ${savePressed}
     ''';
   }
 }

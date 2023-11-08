@@ -17,11 +17,17 @@ class LocalDataService {
     }
   }
 
-  Future<void> saveTasks(List<String> tasks) async {
-    await prefs.then((value) => value.setStringList(_tasksKey, tasks));
+  Future<bool> saveTask(String task) async {
+    List<String> tasks = await getTasks() ?? [];
+
+    tasks.add(task);
+
+    return await prefs.then((value) => value.setStringList(_tasksKey, tasks));
   }
 
-  Future<List<String>?> getTasks() async {
-    await prefs.then((value) => value.getStringList(_tasksKey));
+  Future<List<String>> getTasks() async {
+    List<String> tasks = await prefs.then((value) => value.getStringList(_tasksKey)) ?? [];
+
+    return tasks;
   }
 }
