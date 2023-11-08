@@ -19,14 +19,16 @@ class HomeScreen extends StatelessWidget {
         title: Text(AppStrings.taskList.tr()),
       ),
       body: Column(
-        children: [
-          CalendarWidget(tasksStore),
-          TasksWidget(tasksStore)
-        ],
+        children: [CalendarWidget(tasksStore), TasksWidget(tasksStore)],
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () => context.go(AppStrings.goTaskRoute),
+        onPressed: () => context.goNamed(
+          AppStrings.taskRouteName,
+          pathParameters: {
+            'task': ' ', /// Resolvido por enquanto colocando um espaço, analisar melhor
+          },
+        ),
       ),
     );
   }

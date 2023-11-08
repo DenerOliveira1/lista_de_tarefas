@@ -8,6 +8,7 @@ class TaskModel {
   DateTime? date;
   TimeOfDay? time;
   bool done;
+  int? index;
 
   TaskModel({
     required this.title,
@@ -15,6 +16,7 @@ class TaskModel {
     this.date,
     this.time,
     this.done = false,
+    this.index,
   });
 
   Map<String, dynamic> toJson() => {
@@ -23,6 +25,7 @@ class TaskModel {
         'date': date,
         'time': time,
         'done': done,
+        'index': index,
       };
 
   static TaskModel fromString(String task) {
@@ -34,6 +37,7 @@ class TaskModel {
       date: json['date'],
       time: json['time'],
       done: json['done'],
+      index: json['index']
     );
   }
 

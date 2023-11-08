@@ -15,5 +15,10 @@
 
   "buttonSave": "Save",
 
-  "taskList": "Task list"
+  "taskList": "Task list",
+
+  "successAddTask": "Task added successfully!",
+  "successUpdateTask": "Task updated successfully!",
+  "errorAddTask": "Error adding task!",
+  "errorUpdateTask": "Error updating task!"
 }

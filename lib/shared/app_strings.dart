@@ -4,12 +4,10 @@ class AppStrings {
   static const appTitle = 'Lista de tarefas';
 
   /// Routes
-  static const homeRoute = '/';
-  static const taskRoute = 'task';
-
-  /// Go Routes
-  static const goHomeRoute = homeRoute;
-  static const goTaskRoute = '/$taskRoute';
+  static const homeRoutePath = '/';
+  static const homeRouteName = 'home';
+  static const taskRoutePath = 'task/:task';
+  static const taskRouteName = 'task';
 
   /// AppBar Titles
   static const appBarAddTask = 'appBarAddTask';
@@ -32,4 +30,10 @@ class AppStrings {
   static const buttonSave = 'buttonSave';
 
   static const taskList = 'taskList';
+
+  /// Messages
+  static const successAddTask = 'successAddTask';
+  static const successUpdateTask = 'successUpdateTask';
+  static const errorAddTask = 'errorAddTask';
+  static const errorUpdateTask = 'errorUpdateTask';
 }

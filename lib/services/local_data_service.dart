@@ -17,10 +17,18 @@ class LocalDataService {
     }
   }
 
-  Future<bool> saveTask(String task) async {
-    List<String> tasks = await getTasks() ?? [];
+  Future<bool> addTask(String task) async {
+    List<String> tasks = await getTasks();
 
     tasks.add(task);
+
+    return await prefs.then((value) => value.setStringList(_tasksKey, tasks));
+  }
+
+  Future<bool> updateTask(int index, String task) async {
+    List<String> tasks = await getTasks();
+
+    tasks[index] = task;
 
     return await prefs.then((value) => value.setStringList(_tasksKey, tasks));
   }
@@ -29,5 +37,13 @@ class LocalDataService {
     List<String> tasks = await prefs.then((value) => value.getStringList(_tasksKey)) ?? [];
 
     return tasks;
+  }
+
+  Future<void> removeTask(int index) async {
+    List<String> tasks = await getTasks();
+
+    tasks.removeAt(index);
+
+    await prefs.then((value) => value.setStringList(_tasksKey, tasks));
   }
 }

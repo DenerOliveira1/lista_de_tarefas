@@ -37,6 +37,8 @@ abstract class TaskStoreBase with Store {
   @observable
   bool done = false;
 
+  int? index;
+
   @action
   void setTitle(String value) => title = value;
 
@@ -96,14 +98,29 @@ abstract class TaskStoreBase with Store {
 
       TaskModel task = _generateModel();
 
-      if (await _tasksStore.localDataService.saveTask(task.toString())) {
-        _tasksStore.tasks.add(task);
+      if (index == null) {
+        if (await _tasksStore.localDataService.addTask(task.toString())) {
+          task.index = _tasksStore.tasks.length;
+          _tasksStore.tasks.add(task);
+          _tasksStore.tasksFiltered.add(task);
+        } else {
+          throw "Erro";
+        }
       } else {
-        throw "Erro";
+        if (await _tasksStore.localDataService.updateTask(index!, task.toString())) {
+          await _tasksStore.getTasks();
+        } else {
+          throw "Erro";
+        }
       }
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
+      error = index == null ? AppStrings.errorAddTask : AppStrings.errorUpdateTask;
     } finally {
+      if (error.isEmpty) {
+        success = index == null ? AppStrings.successAddTask : AppStrings.successUpdateTask;
+      }
+
       loading = false;
     }
   }
@@ -116,5 +133,15 @@ abstract class TaskStoreBase with Store {
       time: time,
       done: done,
     );
+  }
+
+  void loadTask(String taskString) {
+    TaskModel task = TaskModel.fromString(taskString);
+
+    title = task.title;
+    note = task.note;
+    date = task.date;
+    time = task.time;
+    index = task.index;
   }
 }

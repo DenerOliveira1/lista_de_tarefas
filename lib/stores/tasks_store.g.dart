@@ -9,37 +9,6 @@ part of 'tasks_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$TasksStore on TasksStoreBase, Store {
-  late final _$tasksAtom = Atom(name: 'TasksStoreBase.tasks', context: context);
-
-  @override
-  List<TaskModel> get tasks {
-    _$tasksAtom.reportRead();
-    return super.tasks;
-  }
-
-  @override
-  set tasks(List<TaskModel> value) {
-    _$tasksAtom.reportWrite(value, super.tasks, () {
-      super.tasks = value;
-    });
-  }
-
-  late final _$tasksFilteredAtom =
-      Atom(name: 'TasksStoreBase.tasksFiltered', context: context);
-
-  @override
-  List<TaskModel> get tasksFiltered {
-    _$tasksFilteredAtom.reportRead();
-    return super.tasksFiltered;
-  }
-
-  @override
-  set tasksFiltered(List<TaskModel> value) {
-    _$tasksFilteredAtom.reportWrite(value, super.tasksFiltered, () {
-      super.tasksFiltered = value;
-    });
-  }
-
   late final _$loadingAtom =
       Atom(name: 'TasksStoreBase.loading', context: context);
 
@@ -87,10 +56,19 @@ mixin _$TasksStore on TasksStoreBase, Store {
   }
 
   @override
+  void changeTaskDone(int index, bool? value) {
+    final _$actionInfo = _$TasksStoreBaseActionController.startAction(
+        name: 'TasksStoreBase.changeTaskDone');
+    try {
+      return super.changeTaskDone(index, value);
+    } finally {
+      _$TasksStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-tasks: ${tasks},
-tasksFiltered: ${tasksFiltered},
 loading: ${loading},
 dateSelected: ${dateSelected}
     ''';

@@ -15,5 +15,10 @@
 
   "buttonSave": "Salvar",
 
-  "taskList": "Lista de tarefas"
+  "taskList": "Lista de tarefas",
+
+  "successAddTask": "Tarefa adicionada com sucesso!",
+  "successUpdateTask": "Tarefa atualizada com sucesso!",
+  "errorAddTask": "Erro ao adicionar tarefa!",
+  "errorUpdateTask": "Erro ao atualizar tarefa!"
 }
