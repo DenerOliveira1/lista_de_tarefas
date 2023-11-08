@@ -1,0 +1,15 @@
+{
+  "appBarAddTask": "Add task",
+  "appBarEditTask": "Edit task",
+
+  "titleError": "Invalid title",
+
+  "taskFormFieldTitle": "Title",
+  "taskFormFieldTitleHintText": "Enter a title",
+  "taskFormFieldDone": "Done?",
+  "taskFormFieldDate": "Date",
+
+  "buttonSave": "Save",
+
+  "taskList": "Task list"
+}

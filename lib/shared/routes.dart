@@ -7,7 +7,7 @@ import './shared.dart';
 final GoRouter routers = GoRouter(
   routes: <RouteBase>[
     GoRoute(
-      path: Strings.homeRoute,
+      path: AppStrings.homeRoute,
       builder: (BuildContext context, GoRouterState state) {
         return const SafeArea(
           child: HomeScreen(),
@@ -15,7 +15,7 @@ final GoRouter routers = GoRouter(
       },
       routes: <RouteBase>[
         GoRoute(
-          path: Strings.taskRoute,
+          path: AppStrings.taskRoute,
           builder: (BuildContext context, GoRouterState state) {
             return const TaskScreen();
           },

@@ -9,6 +9,14 @@ part of 'task_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$TaskStore on TaskStoreBase, Store {
+  Computed<String?>? _$titleErrorComputed;
+
+  @override
+  String? get titleError =>
+      (_$titleErrorComputed ??= Computed<String?>(() => super.titleError,
+              name: 'TaskStoreBase.titleError'))
+          .value;
+
   late final _$successAtom =
       Atom(name: 'TaskStoreBase.success', context: context);
 
@@ -56,18 +64,18 @@ mixin _$TaskStore on TaskStoreBase, Store {
     });
   }
 
-  late final _$taskAtom = Atom(name: 'TaskStoreBase.task', context: context);
+  late final _$titleAtom = Atom(name: 'TaskStoreBase.title', context: context);
 
   @override
-  String get task {
-    _$taskAtom.reportRead();
-    return super.task;
+  String get title {
+    _$titleAtom.reportRead();
+    return super.title;
   }
 
   @override
-  set task(String value) {
-    _$taskAtom.reportWrite(value, super.task, () {
-      super.task = value;
+  set title(String value) {
+    _$titleAtom.reportWrite(value, super.title, () {
+      super.title = value;
     });
   }
 
@@ -101,15 +109,52 @@ mixin _$TaskStore on TaskStoreBase, Store {
     });
   }
 
+  late final _$TaskStoreBaseActionController =
+      ActionController(name: 'TaskStoreBase', context: context);
+
+  @override
+  void setTitle(String value) {
+    final _$actionInfo = _$TaskStoreBaseActionController.startAction(
+        name: 'TaskStoreBase.setTitle');
+    try {
+      return super.setTitle(value);
+    } finally {
+      _$TaskStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setDone(bool? value) {
+    final _$actionInfo = _$TaskStoreBaseActionController.startAction(
+        name: 'TaskStoreBase.setDone');
+    try {
+      return super.setDone(value);
+    } finally {
+      _$TaskStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setDate(DateTime value) {
+    final _$actionInfo = _$TaskStoreBaseActionController.startAction(
+        name: 'TaskStoreBase.setDate');
+    try {
+      return super.setDate(value);
+    } finally {
+      _$TaskStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 success: ${success},
 error: ${error},
 loading: ${loading},
-task: ${task},
+title: ${title},
 date: ${date},
-done: ${done}
+done: ${done},
+titleError: ${titleError}
     ''';
   }
 }
