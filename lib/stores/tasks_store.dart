@@ -11,7 +11,9 @@ abstract class TasksStoreBase with Store {
   final LocalDataService localDataService = LocalDataService();
 
   TasksStoreBase() {
-    getTasks();
+    getTasks().then((value) {
+      _filterTasks();
+    });
   }
 
   List<TaskModel> tasks = ObservableList<TaskModel>();
@@ -25,10 +27,7 @@ abstract class TasksStoreBase with Store {
   DateTime dateSelected = DateTime.now();
 
   @action
-  void setDateSelected(DateTime value) => dateSelected = value;
-
-  @action
-  void changeTaskDone(int index, bool? value) async {
+  void changeTaskDone(int index, bool? value) {
     tasks.firstWhere((element) {
       if (element.index == index) {
         element.done = value ?? false;
@@ -67,7 +66,19 @@ abstract class TasksStoreBase with Store {
       TaskModel task = TaskModel.fromString(entry.value);
       task.index = entry.key;
       tasks.add(task);
-      tasksFiltered.add(task);
     }
+  }
+
+  @action
+  void changeDate(DateTime selectedDay, DateTime focusedDay) {
+    dateSelected = selectedDay;
+    _filterTasks();
+  }
+
+  _filterTasks() {
+    tasksFiltered.clear();
+    tasksFiltered.addAll(
+      tasks.where((element) => element.date.day == dateSelected.day && element.date.month == dateSelected.month && element.date.year == dateSelected.year),
+    );
   }
 }

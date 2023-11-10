@@ -45,22 +45,33 @@ mixin _$TasksStore on TasksStoreBase, Store {
       ActionController(name: 'TasksStoreBase', context: context);
 
   @override
-  void setDateSelected(DateTime value) {
+  void changeTaskDone(int index, bool? value) {
     final _$actionInfo = _$TasksStoreBaseActionController.startAction(
-        name: 'TasksStoreBase.setDateSelected');
+        name: 'TasksStoreBase.changeTaskDone');
     try {
-      return super.setDateSelected(value);
+      return super.changeTaskDone(index, value);
     } finally {
       _$TasksStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void changeTaskDone(int index, bool? value) {
+  void removeTask(int index) {
     final _$actionInfo = _$TasksStoreBaseActionController.startAction(
-        name: 'TasksStoreBase.changeTaskDone');
+        name: 'TasksStoreBase.removeTask');
     try {
-      return super.changeTaskDone(index, value);
+      return super.removeTask(index);
+    } finally {
+      _$TasksStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeDate(DateTime selectedDay, DateTime focusedDay) {
+    final _$actionInfo = _$TasksStoreBaseActionController.startAction(
+        name: 'TasksStoreBase.changeDate');
+    try {
+      return super.changeDate(selectedDay, focusedDay);
     } finally {
       _$TasksStoreBaseActionController.endAction(_$actionInfo);
     }

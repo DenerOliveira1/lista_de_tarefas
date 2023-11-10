@@ -118,13 +118,13 @@ mixin _$TaskStore on TaskStoreBase, Store {
   late final _$dateAtom = Atom(name: 'TaskStoreBase.date', context: context);
 
   @override
-  DateTime? get date {
+  DateTime get date {
     _$dateAtom.reportRead();
     return super.date;
   }
 
   @override
-  set date(DateTime? value) {
+  set date(DateTime value) {
     _$dateAtom.reportWrite(value, super.date, () {
       super.date = value;
     });
@@ -194,7 +194,7 @@ mixin _$TaskStore on TaskStoreBase, Store {
   }
 
   @override
-  void setDate(DateTime? value) {
+  void setDate(DateTime value) {
     final _$actionInfo = _$TaskStoreBaseActionController.startAction(
         name: 'TaskStoreBase.setDate');
     try {

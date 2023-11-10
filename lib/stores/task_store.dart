@@ -29,7 +29,7 @@ abstract class TaskStoreBase with Store {
   String note = '';
 
   @observable
-  DateTime? date;
+  DateTime date = DateTime.now();
 
   @observable
   TimeOfDay? time;
@@ -46,7 +46,7 @@ abstract class TaskStoreBase with Store {
   void setNote(String value) => note = value;
 
   @action
-  void setDate(DateTime? value) => date = value;
+  void setDate(DateTime value) => date = value;
 
   @action
   void setTime(TimeOfDay? value) => time = value;

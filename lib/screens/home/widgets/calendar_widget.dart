@@ -18,9 +18,7 @@ class CalendarWidget extends StatelessWidget {
           currentDay: tasksStore.dateSelected,
           firstDay: DateTime.now().subtract(const Duration(days: 365)),
           lastDay: DateTime.now().add(const Duration(days: 365)),
-          onDaySelected: (selectedDay, focusedDay) {
-            tasksStore.setDateSelected(selectedDay);
-          },
+          onDaySelected: tasksStore.changeDate,
         );
       },
     );

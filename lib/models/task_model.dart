@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class TaskModel {
   String title;
   String note;
-  DateTime? date;
+  DateTime date;
   TimeOfDay? time;
   bool done;
   int? index;
@@ -13,7 +13,7 @@ class TaskModel {
   TaskModel({
     required this.title,
     required this.note,
-    this.date,
+    required this.date,
     this.time,
     this.done = false,
     this.index,
@@ -22,7 +22,7 @@ class TaskModel {
   Map<String, dynamic> toJson() => {
         'title': title,
         'note': note,
-        'date': date,
+        'date': date.millisecondsSinceEpoch,
         'time': time,
         'done': done,
         'index': index,
@@ -34,7 +34,7 @@ class TaskModel {
     return TaskModel(
       title: json['title'],
       note: json['note'],
-      date: json['date'],
+      date: DateTime.fromMillisecondsSinceEpoch(json['date']),
       time: json['time'],
       done: json['done'],
       index: json['index']
