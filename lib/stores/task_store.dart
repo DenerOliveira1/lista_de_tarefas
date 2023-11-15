@@ -12,6 +12,7 @@ class TaskStore = TaskStoreBase with _$TaskStore;
 
 abstract class TaskStoreBase with Store {
   final TasksStore _tasksStore = GetIt.I<TasksStore>();
+  final GlobalKey<State> observerKey = GlobalKey<State>();
 
   @observable
   String success = '';
@@ -118,7 +119,8 @@ abstract class TaskStoreBase with Store {
       error = index == null ? AppStrings.errorAddTask : AppStrings.errorUpdateTask;
     } finally {
       if (error.isEmpty) {
-        success = index == null ? AppStrings.successAddTask : AppStrings.successUpdateTask;
+        //success = index == null ? AppStrings.successAddTask : AppStrings.successUpdateTask;
+        Navigator.of(observerKey.currentContext!).pop();
       }
 
       loading = false;

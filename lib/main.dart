@@ -53,6 +53,32 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
+          inputDecorationTheme: const InputDecorationTheme(
+            iconColor: AppColors.iconColor,
+            prefixIconColor: AppColors.iconColor,
+            suffixIconColor: AppColors.iconColor,
+            disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
+            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
+            errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
+            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
+            focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
+            //fillColor: Color(themeLightFirebaseModel.inputDecorationTheme['fillColor']['color']).withOpacity(double.tryParse(themeLightFirebaseModel.inputDecorationTheme['fillColor']['opacity'].toString()) ?? 1),
+            //hintStyle: _getTextStyle(themeLightFirebaseModel.inputDecorationTheme['hintStyle']),
+            //labelStyle: _getTextStyle(themeLightFirebaseModel.inputDecorationTheme['labelStyle']),
+          ),
+          iconButtonTheme: IconButtonThemeData(
+            style: ButtonStyle(
+              iconColor: MaterialStateColor.resolveWith((states) {
+                switch (states) {
+                  case MaterialState.pressed:
+                    return Colors.blue;
+
+                  default:
+                    return Colors.grey;
+                }
+              }),
+            )
+          )
         ),
         routerConfig: routers,
       ),

@@ -6,7 +6,7 @@
   "noteError": "Invalid note",
 
   "taskFormFieldTitle": "Title",
-  "taskFormFieldTitleHintText": "Enter a title",
+  "taskFormFieldTitleHintText": "I need to do...",
   "taskFormFieldNote": "Note",
   "taskFormFieldNoteHintText": "Enter a note",
   "taskFormFieldDone": "Done?",

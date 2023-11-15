@@ -27,9 +27,7 @@ class HomeScreen extends StatelessWidget {
         child: const Icon(Icons.add),
         onPressed: () {
           scaffoldKey.currentState?.showBottomSheet<void>((context) {
-            return TextFormField(
-              autofocus: true,
-            );
+            return AddTaskWidget();
           });
         },
         /*onPressed: () => context.goNamed(
