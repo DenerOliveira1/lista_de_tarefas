@@ -9,12 +9,14 @@ import './widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   final TasksStore tasksStore = GetIt.I<TasksStore>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: Text(AppStrings.taskList.tr()),
       ),
@@ -23,12 +25,19 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () => context.goNamed(
+        onPressed: () {
+          scaffoldKey.currentState?.showBottomSheet<void>((context) {
+            return TextFormField(
+              autofocus: true,
+            );
+          });
+        },
+        /*onPressed: () => context.goNamed(
           AppStrings.taskRouteName,
           pathParameters: {
             'task': ' ', /// Resolvido por enquanto colocando um espaço, analisar melhor
           },
-        ),
+        ),*/
       ),
     );
   }
