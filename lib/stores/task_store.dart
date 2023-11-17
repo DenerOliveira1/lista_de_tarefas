@@ -13,6 +13,14 @@ class TaskStore = TaskStoreBase with _$TaskStore;
 abstract class TaskStoreBase with Store {
   final TasksStore _tasksStore = GetIt.I<TasksStore>();
   final GlobalKey<State> observerKey = GlobalKey<State>();
+  final List<String> periods = [
+    'Personalizado',
+    'Hoje',
+    'Amanhã',
+    'Semana que vem',
+    'Mês que vem',
+    'Ano que vem'
+  ];
 
   @observable
   String success = '';
@@ -37,6 +45,9 @@ abstract class TaskStoreBase with Store {
 
   @observable
   bool done = false;
+
+  @observable
+  bool selectDateTime = false;
 
   int? index;
 
@@ -85,6 +96,16 @@ abstract class TaskStoreBase with Store {
   bool get isFormValid {
     return titleValid
         && noteValid;
+  }
+
+  @computed
+  VoidCallback? get selectDateTimePressed {
+    return _selectDateTime;
+  }
+
+  @action
+  void _selectDateTime() {
+    selectDateTime = !selectDateTime;
   }
 
   @computed

@@ -54,9 +54,9 @@ class MyApp extends StatelessWidget {
             ),
           ),
           inputDecorationTheme: const InputDecorationTheme(
-            iconColor: AppColors.iconColor,
-            prefixIconColor: AppColors.iconColor,
-            suffixIconColor: AppColors.iconColor,
+            iconColor: AppColors.iconColorEnabled,
+            prefixIconColor: AppColors.iconColorEnabled,
+            suffixIconColor: AppColors.iconColorEnabled,
             disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
             enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
             errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),

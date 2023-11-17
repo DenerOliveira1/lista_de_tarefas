@@ -30,6 +30,14 @@ mixin _$TaskStore on TaskStoreBase, Store {
       (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid,
               name: 'TaskStoreBase.isFormValid'))
           .value;
+  Computed<VoidCallback?>? _$selectDateTimePressedComputed;
+
+  @override
+  VoidCallback? get selectDateTimePressed =>
+      (_$selectDateTimePressedComputed ??= Computed<VoidCallback?>(
+              () => super.selectDateTimePressed,
+              name: 'TaskStoreBase.selectDateTimePressed'))
+          .value;
   Computed<VoidCallback?>? _$savePressedComputed;
 
   @override
@@ -160,6 +168,22 @@ mixin _$TaskStore on TaskStoreBase, Store {
     });
   }
 
+  late final _$selectDateTimeAtom =
+      Atom(name: 'TaskStoreBase.selectDateTime', context: context);
+
+  @override
+  bool get selectDateTime {
+    _$selectDateTimeAtom.reportRead();
+    return super.selectDateTime;
+  }
+
+  @override
+  set selectDateTime(bool value) {
+    _$selectDateTimeAtom.reportWrite(value, super.selectDateTime, () {
+      super.selectDateTime = value;
+    });
+  }
+
   late final _$_saveAsyncAction =
       AsyncAction('TaskStoreBase._save', context: context);
 
@@ -227,6 +251,17 @@ mixin _$TaskStore on TaskStoreBase, Store {
   }
 
   @override
+  void _selectDateTime() {
+    final _$actionInfo = _$TaskStoreBaseActionController.startAction(
+        name: 'TaskStoreBase._selectDateTime');
+    try {
+      return super._selectDateTime();
+    } finally {
+      _$TaskStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 success: ${success},
@@ -237,9 +272,11 @@ note: ${note},
 date: ${date},
 time: ${time},
 done: ${done},
+selectDateTime: ${selectDateTime},
 titleError: ${titleError},
 noteError: ${noteError},
 isFormValid: ${isFormValid},
+selectDateTimePressed: ${selectDateTimePressed},
 savePressed: ${savePressed}
     ''';
   }
