@@ -9,6 +9,9 @@ class TasksStore = TasksStoreBase with _$TasksStore;
 
 abstract class TasksStoreBase with Store {
   final LocalDataService localDataService = LocalDataService();
+  final DateTime _now = DateTime.now();
+  final DateTime _startOfNextWeek = DateTime.now().add(Duration(days: 7 - DateTime.now().weekday));
+  final DateTime _endOfNextWeek = DateTime.now().add(Duration(days: 7 - DateTime.now().weekday)).add(const Duration(days: 6));
 
   TasksStoreBase() {
     getTasks().then((value) {
@@ -19,6 +22,16 @@ abstract class TasksStoreBase with Store {
   List<TaskModel> tasks = ObservableList<TaskModel>();
 
   List<TaskModel> tasksFiltered = ObservableList<TaskModel>();
+
+  Iterable<TaskModel> get tasksToday => tasks.where((element) => element.date.day == _now.day && element.date.month == _now.month && element.date.year == _now.year,);
+
+  Iterable<TaskModel> get tasksTomorrow => tasks.where((element) => element.date.day == _now.day + 1 && element.date.month == _now.month && element.date.year == _now.year);
+
+  Iterable<TaskModel> get tasksForNextWeek => tasks.where((element) => element.date.isAfter(_startOfNextWeek.subtract(const Duration(days: 1))) && element.date.isBefore(_endOfNextWeek.add(const Duration(days: 1))));
+
+  Iterable<TaskModel> get tasksForNextMonth => tasks.where((element) => element.date.month == _now.month + 1 && element.date.year == _now.year);
+
+  Iterable<TaskModel> get tasksForNextYear => tasks.where((element) => element.date.year == _now.year + 1);
 
   @observable
   bool loading = false;

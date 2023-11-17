@@ -24,6 +24,7 @@ void main() async {
 
 void _setupStores() {
   GetIt.I.registerSingleton(TasksStore());
+  GetIt.I.registerSingleton(PageViewStore());
 }
 
 class MyApp extends StatelessWidget {

@@ -1,41 +1,46 @@
 import 'package:localize_and_translate/localize_and_translate.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../screens/screens.dart';
 import '../../shared/shared.dart';
 import '../../stores/stores.dart';
-import './widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   final TasksStore tasksStore = GetIt.I<TasksStore>();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final PageViewStore pageViewStore = GetIt.I<PageViewStore>();
 
   HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        title: Text(AppStrings.taskList.tr()),
+      key: pageViewStore.scaffoldKey,
+      body: PageView(
+        controller: pageViewStore.pageController,
+        children: [
+          DailyTab(),
+          CalendarTab(),
+        ],
       ),
-      body: Column(
-        children: [CalendarWidget(tasksStore), TasksWidget(tasksStore)],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          scaffoldKey.currentState?.showBottomSheet<void>((context) {
-            return AddTaskWidget();
-          });
-        },
-        /*onPressed: () => context.goNamed(
-          AppStrings.taskRouteName,
-          pathParameters: {
-            'task': ' ', /// Resolvido por enquanto colocando um espaço, analisar melhor
-          },
-        ),*/
+      bottomNavigationBar: Observer(
+        builder: (context) {
+          return BottomNavigationBar(
+            currentIndex: pageViewStore.currentIndex,
+            onTap: pageViewStore.setCurrentScreen,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.task),
+                label: "Tarefas",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.calendar_month),
+                label: "Calendário",
+              ),
+            ],
+          );
+        }
       ),
     );
   }

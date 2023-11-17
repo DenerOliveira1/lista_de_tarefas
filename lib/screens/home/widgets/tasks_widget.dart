@@ -1,14 +1,15 @@
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../../shared/shared.dart';
 import '../../../stores/stores.dart';
 
 class TasksWidget extends StatefulWidget {
-  final TasksStore tasksStore;
+  final TasksStore tasksStore = GetIt.I<TasksStore>();
 
-  const TasksWidget(this.tasksStore, {super.key});
+  TasksWidget({super.key});
 
   @override
   State<TasksWidget> createState() => _TasksWidgetState();
