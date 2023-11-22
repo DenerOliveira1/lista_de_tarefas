@@ -63,23 +63,26 @@ class MyApp extends StatelessWidget {
             errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
             focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
             focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
-            //fillColor: Color(themeLightFirebaseModel.inputDecorationTheme['fillColor']['color']).withOpacity(double.tryParse(themeLightFirebaseModel.inputDecorationTheme['fillColor']['opacity'].toString()) ?? 1),
-            //hintStyle: _getTextStyle(themeLightFirebaseModel.inputDecorationTheme['hintStyle']),
-            //labelStyle: _getTextStyle(themeLightFirebaseModel.inputDecorationTheme['labelStyle']),
+            hintStyle: TextStyle(color: AppColors.inputTextColor),
+            labelStyle: TextStyle(color: AppColors.inputTextColor),
           ),
+          textTheme: const TextTheme(
+            subtitle1: TextStyle(color: AppColors.inputTextColor),
+          ),
+          disabledColor: Colors.grey,
           iconButtonTheme: IconButtonThemeData(
             style: ButtonStyle(
-              iconColor: MaterialStateColor.resolveWith((states) {
-                switch (states) {
-                  case MaterialState.pressed:
-                    return Colors.blue;
-
-                  default:
+              iconColor: MaterialStateProperty.resolveWith<Color>(
+                (states) {
+                  /*if (states.contains(MaterialState.disabled)) {
                     return Colors.grey;
-                }
-              }),
-            )
-          )
+                  }*/
+
+                  return Colors.blue;
+                },
+              ),
+            ),
+          ),
         ),
         routerConfig: routers,
       ),

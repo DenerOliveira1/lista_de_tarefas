@@ -14,7 +14,7 @@ class AddTaskWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: taskStore.observerKey,
-      color: Colors.black12,
+      color: Colors.black,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
         child: Column(
@@ -65,13 +65,14 @@ class AddTaskWidget extends StatelessWidget {
                   initialValue: taskStore.title,
                   onChanged: taskStore.setTitle,
                   decoration: InputDecoration(
-                      hintText: AppStrings.taskFormFieldTitleHintText.tr(),
-                      //labelText: AppStrings.taskFormFieldTitle.tr(),
-                      //errorText: taskStore.titleError?.tr(),
-                      suffixIcon: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Observer(builder: (context) {
+                    //hintText: AppStrings.taskFormFieldTitleHintText.tr(),
+                    //labelText: AppStrings.taskFormFieldTitle.tr(),
+                    //errorText: taskStore.titleError?.tr(),
+                    suffixIcon: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Observer(
+                          builder: (context) {
                             return IconButton(
                               icon: Icon(
                                 Icons.calendar_month,
@@ -79,15 +80,20 @@ class AddTaskWidget extends StatelessWidget {
                               ),
                               onPressed: taskStore.selectDateTimePressed,
                             );
-                          }),
-                          Observer(builder: (context) {
+                          },
+                        ),
+                        Observer(
+                          builder: (context) {
                             return IconButton(
                               icon: const Icon(Icons.add),
                               onPressed: taskStore.savePressed,
+                              //disabledColor: Colors.grey,
                             );
-                          }),
-                        ],
-                      )),
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                 );
               },
             ),

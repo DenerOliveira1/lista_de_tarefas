@@ -82,7 +82,7 @@ class DailyTab extends StatelessWidget {
           25,
         ),
         border: Border.all(
-          color: AppColors.inputBorderColor,
+          color: AppColors.boxBorderColor,
           width: 1,
         ),
       ),
