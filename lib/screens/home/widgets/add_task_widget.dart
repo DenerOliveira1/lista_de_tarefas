@@ -14,7 +14,7 @@ class AddTaskWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: taskStore.observerKey,
-      color: Colors.black,
+      color: AppColors.backgroundColor,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
         child: Column(
@@ -58,44 +58,48 @@ class AddTaskWidget extends StatelessWidget {
                 ),
               );
             }),
-            Observer(
-              builder: (context) {
-                return TextFormField(
-                  autofocus: true,
-                  initialValue: taskStore.title,
-                  onChanged: taskStore.setTitle,
-                  decoration: InputDecoration(
-                    //hintText: AppStrings.taskFormFieldTitleHintText.tr(),
-                    //labelText: AppStrings.taskFormFieldTitle.tr(),
-                    //errorText: taskStore.titleError?.tr(),
-                    suffixIcon: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Observer(
-                          builder: (context) {
-                            return IconButton(
-                              icon: Icon(
-                                Icons.calendar_month,
-                                color: taskStore.selectDateTime ? AppColors.iconColorEnabled : AppColors.iconColorDisabled,
-                              ),
-                              onPressed: taskStore.selectDateTimePressed,
-                            );
-                          },
-                        ),
-                        Observer(
-                          builder: (context) {
-                            return IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: taskStore.savePressed,
-                              //disabledColor: Colors.grey,
-                            );
-                          },
-                        ),
-                      ],
+            TextField(
+              autofocus: true,
+              onChanged: taskStore.setTitle,
+              style: TextStyle(color: Colors.white),
+              //style: TextStyle(color: Colors.blue),
+              decoration: InputDecoration(
+                //hintText: AppStrings.taskFormFieldTitleHintText.tr(),
+                //labelText: AppStrings.taskFormFieldTitle.tr(),
+                //errorText: taskStore.titleError?.tr(),
+                /*suffixStyle: TextStyle(color: Colors.white),
+                hintStyle: TextStyle(color: Colors.white),
+                hoverColor: Colors.white,
+                fillColor: Colors.white,
+                focusColor: Colors.white,
+                prefixStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.white),*/
+                suffixIcon: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Observer(
+                      builder: (context) {
+                        return IconButton(
+                          icon: Icon(
+                            Icons.calendar_month,
+                            color: taskStore.selectDateTime ? AppColors.iconColor : AppColors.disabledColor,
+                          ),
+                          onPressed: taskStore.selectDateTimePressed,
+                        );
+                      },
                     ),
-                  ),
-                );
-              },
+                    Observer(
+                      builder: (context) {
+                        return IconButton(
+                          icon: const Icon(Icons.add),
+                          onPressed: taskStore.savePressed,
+                          //disabledColor: Colors.grey,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

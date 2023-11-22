@@ -45,8 +45,6 @@ class MyApp extends StatelessWidget {
           return child;
         },
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.seedColor),
-          useMaterial3: true,
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
@@ -55,33 +53,70 @@ class MyApp extends StatelessWidget {
             ),
           ),
           inputDecorationTheme: const InputDecorationTheme(
-            iconColor: AppColors.iconColorEnabled,
-            prefixIconColor: AppColors.iconColorEnabled,
-            suffixIconColor: AppColors.iconColorEnabled,
+            iconColor: AppColors.iconColor,
+            prefixIconColor: AppColors.iconColor,
+            suffixIconColor: AppColors.iconColor,
             disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
             enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
             errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
             focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
             focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
-            hintStyle: TextStyle(color: AppColors.inputTextColor),
-            labelStyle: TextStyle(color: AppColors.inputTextColor),
+            //hintStyle: TextStyle(color: AppColors.inputTextColor),
+            //labelStyle: TextStyle(color: AppColors.inputTextColor),
+            //suffixStyle: TextStyle(color: AppColors.inputTextColor),
           ),
-          textTheme: const TextTheme(
-            subtitle1: TextStyle(color: AppColors.inputTextColor),
+          /*textTheme: const TextTheme(
+            bodySmall: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+            ),
+            titleMedium: TextStyle(color: AppColors.inputTextColor),
+          ),*/
+          primaryColor: Colors.white,
+          colorScheme: const ColorScheme(
+            primary: Colors.white,
+            brightness: Brightness.dark,
+            onPrimary: Colors.white,
+            secondary: Colors.black,
+            onSecondary: Colors.black,
+            error: Colors.red,
+            onError: Colors.red,
+            background: AppColors.backgroundColor,
+            onBackground: AppColors.backgroundColor,
+            surface: Colors.white,
+            onSurface: Colors.white,
           ),
-          disabledColor: Colors.grey,
+          listTileTheme: const ListTileThemeData(
+            titleTextStyle: TextStyle(
+              color: AppColors.textPrincipalColor,
+              fontSize: 15,
+            ),
+            leadingAndTrailingTextStyle: TextStyle(
+              color: AppColors.textPrincipalColor,
+              fontSize: 15,
+            ),
+          ),
+          disabledColor: AppColors.disabledColor,
+          iconTheme: const IconThemeData(
+            color: AppColors.iconColor,
+          ),
           iconButtonTheme: IconButtonThemeData(
             style: ButtonStyle(
               iconColor: MaterialStateProperty.resolveWith<Color>(
-                (states) {
-                  /*if (states.contains(MaterialState.disabled)) {
-                    return Colors.grey;
-                  }*/
+                (Set<MaterialState> states) {
+                  if (states.contains(MaterialState.disabled)) {
+                    return AppColors.disabledColor;
+                  }
 
-                  return Colors.blue;
+                  return AppColors.iconColor;
                 },
               ),
             ),
+          ),
+          textTheme: const TextTheme(
+            subtitle2: TextStyle(
+              color: AppColors.textSecondaryColor,
+            ), // Estilo para os campos de texto
           ),
         ),
         routerConfig: routers,
