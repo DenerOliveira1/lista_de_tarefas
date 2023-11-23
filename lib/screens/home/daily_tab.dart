@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 
 import '../../shared/shared.dart';
 import '../../stores/stores.dart';
-import './widgets/widgets.dart';
 
 class DailyTab extends StatelessWidget {
   final TasksStore tasksStore = GetIt.I<TasksStore>();

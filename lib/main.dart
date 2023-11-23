@@ -45,34 +45,36 @@ class MyApp extends StatelessWidget {
           return child;
         },
         theme: ThemeData(
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(30),
+            floatingActionButtonTheme: const FloatingActionButtonThemeData(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30),
+                ),
               ),
             ),
-          ),
-          inputDecorationTheme: const InputDecorationTheme(
-            iconColor: AppColors.iconColor,
-            prefixIconColor: AppColors.iconColor,
-            suffixIconColor: AppColors.iconColor,
-            disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
-            enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
-            errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
-            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
-            focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
-            //hintStyle: TextStyle(color: AppColors.inputTextColor),
-            //labelStyle: TextStyle(color: AppColors.inputTextColor),
-            //suffixStyle: TextStyle(color: AppColors.inputTextColor),
-          ),
-          /*textTheme: const TextTheme(
-            bodySmall: TextStyle(
-              color: Colors.black,
-              fontSize: 15,
+            inputDecorationTheme: const InputDecorationTheme(
+              iconColor: AppColors.iconColor,
+              prefixIconColor: AppColors.iconColor,
+              suffixIconColor: AppColors.iconColor,
+              disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
+              enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
+              errorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
+              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
+              focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: AppColors.inputBorderColor, width: 1), borderRadius: BorderRadius.all(Radius.circular(25))),
+              /*labelStyle: TextStyle(color: AppColors.inputTextColor),
+              floatingLabelStyle: TextStyle(color: AppColors.inputTextColor),
+              helperStyle: TextStyle(color: AppColors.inputTextColor),
+              hintStyle: TextStyle(color: AppColors.inputTextColor),
+              errorStyle: TextStyle(color: AppColors.inputTextColor),
+              prefixStyle: TextStyle(color: AppColors.inputTextColor),
+              suffixStyle: TextStyle(color: AppColors.inputTextColor),*/
+              //filled: true,
+              //fillColor: Colors.orange
             ),
-            titleMedium: TextStyle(color: AppColors.inputTextColor),
-          ),*/
-          primaryColor: Colors.white,
+            textTheme: TextTheme(
+              headline1: TextStyle(color: AppColors.inputTextColor),
+            ),
+            /*primaryColor: Colors.white,
           colorScheme: const ColorScheme(
             primary: Colors.white,
             brightness: Brightness.dark,
@@ -85,40 +87,40 @@ class MyApp extends StatelessWidget {
             onBackground: AppColors.backgroundColor,
             surface: Colors.white,
             onSurface: Colors.white,
-          ),
-          listTileTheme: const ListTileThemeData(
-            titleTextStyle: TextStyle(
-              color: AppColors.textPrincipalColor,
-              fontSize: 15,
-            ),
-            leadingAndTrailingTextStyle: TextStyle(
-              color: AppColors.textPrincipalColor,
-              fontSize: 15,
-            ),
-          ),
-          disabledColor: AppColors.disabledColor,
-          iconTheme: const IconThemeData(
-            color: AppColors.iconColor,
-          ),
-          iconButtonTheme: IconButtonThemeData(
-            style: ButtonStyle(
-              iconColor: MaterialStateProperty.resolveWith<Color>(
-                (Set<MaterialState> states) {
-                  if (states.contains(MaterialState.disabled)) {
-                    return AppColors.disabledColor;
-                  }
-
-                  return AppColors.iconColor;
-                },
+          ),*/
+            listTileTheme: const ListTileThemeData(
+              titleTextStyle: TextStyle(
+                color: AppColors.textPrimaryColor,
+                fontSize: 15,
+              ),
+              leadingAndTrailingTextStyle: TextStyle(
+                color: AppColors.textPrimaryColor,
+                fontSize: 15,
               ),
             ),
-          ),
-          textTheme: const TextTheme(
-            subtitle2: TextStyle(
+            disabledColor: AppColors.disabledColor,
+            iconTheme: const IconThemeData(
+              color: AppColors.iconColor,
+            ),
+            iconButtonTheme: IconButtonThemeData(
+              style: ButtonStyle(
+                iconColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.disabled)) {
+                      return AppColors.disabledColor;
+                    }
+
+                    return AppColors.iconColor;
+                  },
+                ),
+              ),
+            ),
+            /*textTheme: const TextTheme(
+            titleSmall: TextStyle(
               color: AppColors.textSecondaryColor,
             ), // Estilo para os campos de texto
-          ),
-        ),
+          ),*/
+            bottomNavigationBarTheme: const BottomNavigationBarThemeData(selectedItemColor: AppColors.iconColor, unselectedItemColor: AppColors.disabledColor)),
         routerConfig: routers,
       ),
     );

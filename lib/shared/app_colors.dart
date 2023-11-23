@@ -8,7 +8,7 @@ class AppColors {
   static const inputBorderColor = Colors.white;
   static const inputTextColor = Colors.white;
   static const boxBorderColor = Colors.black;
-  static const textPrincipalColor = Colors.black;
+  static const textPrimaryColor = Colors.black;
   static const textSecondaryColor = Colors.white;
   static const backgroundColor = Colors.black;
 }

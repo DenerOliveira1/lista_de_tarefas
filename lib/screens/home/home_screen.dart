@@ -1,10 +1,8 @@
-import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../screens/screens.dart';
-import '../../shared/shared.dart';
 import '../../stores/stores.dart';
 
 class HomeScreen extends StatelessWidget {
