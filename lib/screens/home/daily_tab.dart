@@ -18,57 +18,86 @@ class DailyTab extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            Observer(
-              builder: (context) {
-                return ExpansionTile(
-                  title: const Text('Hoje'),
-                  trailing: _buildCount(tasksStore.tasksToday.length),
-                  children: tasksStore.tasksToday.map((e) => ListTile(title: Text(e.title),)).toList(),
-                );
-              }
-            ),
-            Observer(
-              builder: (context) {
-                return ExpansionTile(
-                  title: const Text('Amanhã'),
-                  trailing: _buildCount(tasksStore.tasksTomorrow.length),
-                  children: tasksStore.tasksTomorrow.map((e) => ListTile(title: Text(e.title),)).toList(),
-                );
-              }
-            ),
-            Observer(
-              builder: (context) {
-                return ExpansionTile(
-                  title: const Text('Semana que vem'),
-                  trailing: _buildCount(tasksStore.tasksForNextWeek.length),
-                  children: tasksStore.tasksForNextWeek.map((e) => ListTile(title: Text(e.title),)).toList(),
-                );
-              }
-            ),
-            Observer(
-              builder: (context) {
-                return ExpansionTile(
-                  title: const Text('Mês que vem'),
-                  trailing: _buildCount(tasksStore.tasksForNextMonth.length),
-                  children: tasksStore.tasksForNextMonth.map((e) => ListTile(title: Text(e.title),)).toList(),
-                );
-              }
-            ),
-            Observer(
-              builder: (context) {
-                return ExpansionTile(
-                  title: const Text('Ano que vem'),
-                  trailing: _buildCount(tasksStore.tasksForNextYear.length),
-                  children: tasksStore.tasksForNextYear.map((e) => ListTile(title: Text(e.title),)).toList(),
-                );
-              }
-            ),
-          ],
-        )
-      ),
+          child: ListView(
+        shrinkWrap: true,
+        children: [
+          Observer(
+            builder: (context) {
+              return ExpansionTile(
+                title: const Text('Hoje'),
+                trailing: _buildCount(tasksStore.tasksToday.length),
+                children: tasksStore.tasksToday
+                    .map(
+                      (e) => ListTile(
+                        title: Text(e.title),
+                      ),
+                    )
+                    .toList(),
+              );
+            },
+          ),
+          Observer(
+            builder: (context) {
+              return ExpansionTile(
+                title: const Text('Amanhã'),
+                trailing: _buildCount(tasksStore.tasksTomorrow.length),
+                children: tasksStore.tasksTomorrow
+                    .map(
+                      (e) => ListTile(
+                        title: Text(e.title),
+                      ),
+                    )
+                    .toList(),
+              );
+            },
+          ),
+          Observer(
+            builder: (context) {
+              return ExpansionTile(
+                title: const Text('Semana que vem'),
+                trailing: _buildCount(tasksStore.tasksForNextWeek.length),
+                children: tasksStore.tasksForNextWeek
+                    .map(
+                      (e) => ListTile(
+                        title: Text(e.title),
+                      ),
+                    )
+                    .toList(),
+              );
+            },
+          ),
+          Observer(
+            builder: (context) {
+              return ExpansionTile(
+                title: const Text('Mês que vem'),
+                trailing: _buildCount(tasksStore.tasksForNextMonth.length),
+                children: tasksStore.tasksForNextMonth
+                    .map(
+                      (e) => ListTile(
+                        title: Text(e.title),
+                      ),
+                    )
+                    .toList(),
+              );
+            },
+          ),
+          Observer(
+            builder: (context) {
+              return ExpansionTile(
+                title: const Text('Ano que vem'),
+                trailing: _buildCount(tasksStore.tasksForNextYear.length),
+                children: tasksStore.tasksForNextYear
+                    .map(
+                      (e) => ListTile(
+                        title: Text(e.title),
+                      ),
+                    )
+                    .toList(),
+              );
+            },
+          ),
+        ],
+      )),
     );
   }
 

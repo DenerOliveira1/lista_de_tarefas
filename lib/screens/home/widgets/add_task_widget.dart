@@ -19,11 +19,6 @@ class AddTaskWidget extends StatelessWidget {
       child: TextField(
         autofocus: true,
         onChanged: taskStore.setTitle,
-        textInputAction: TextInputAction.done,
-        onEditingComplete: () {
-          FocusScope.of(context).unfocus();
-          //pageViewStore.scaffoldKey.currentState?.dispose();
-        },
         decoration: InputDecoration(
           suffixIcon: Observer(
             builder: (context) {

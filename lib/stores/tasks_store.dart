@@ -15,7 +15,7 @@ abstract class TasksStoreBase with Store {
 
   TasksStoreBase() {
     getTasks().then((value) {
-      _filterTasks();
+      filterTasks();
     });
   }
 
@@ -23,7 +23,9 @@ abstract class TasksStoreBase with Store {
 
   List<TaskModel> tasksFiltered = ObservableList<TaskModel>();
 
-  Iterable<TaskModel> get tasksToday => tasks.where((element) => element.date.day == _now.day && element.date.month == _now.month && element.date.year == _now.year,);
+  Iterable<TaskModel> get tasksToday => tasks.where(
+        (element) => element.date.day == _now.day && element.date.month == _now.month && element.date.year == _now.year,
+      );
 
   Iterable<TaskModel> get tasksTomorrow => tasks.where((element) => element.date.day == _now.day + 1 && element.date.month == _now.month && element.date.year == _now.year);
 
@@ -60,13 +62,13 @@ abstract class TasksStoreBase with Store {
 
     /// Removo a task com o index passado
     tasks.removeWhere((element) => element.index == index);
-    tasksFiltered.removeWhere((element) => element.index == index);
 
     /// Atualizado o index dos registros novamente
     for (var entry in tasks.asMap().entries) {
       tasks[entry.key].index = entry.key;
-      tasksFiltered[entry.key].index = entry.key;
     }
+
+    filterTasks();
   }
 
   Future<void> getTasks() async {
@@ -85,13 +87,15 @@ abstract class TasksStoreBase with Store {
   @action
   void changeDate(DateTime selectedDay, DateTime focusedDay) {
     dateSelected = selectedDay;
-    _filterTasks();
+    filterTasks();
   }
 
-  _filterTasks() {
+  filterTasks() {
     tasksFiltered.clear();
     tasksFiltered.addAll(
-      tasks.where((element) => element.date.day == dateSelected.day && element.date.month == dateSelected.month && element.date.year == dateSelected.year),
+      tasks.where(
+        (element) => element.date.day == dateSelected.day && element.date.month == dateSelected.month && element.date.year == dateSelected.year,
+      ),
     );
   }
 }

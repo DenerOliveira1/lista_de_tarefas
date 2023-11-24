@@ -131,7 +131,7 @@ abstract class TaskStoreBase with Store {
         if (await _tasksStore.localDataService.addTask(task.toString())) {
           task.index = _tasksStore.tasks.length;
           _tasksStore.tasks.add(task);
-          _tasksStore.tasksFiltered.add(task);
+          _tasksStore.filterTasks();
         } else {
           throw "Erro";
         }
