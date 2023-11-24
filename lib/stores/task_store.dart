@@ -13,14 +13,7 @@ class TaskStore = TaskStoreBase with _$TaskStore;
 abstract class TaskStoreBase with Store {
   final TasksStore _tasksStore = GetIt.I<TasksStore>();
   final GlobalKey<State> observerKey = GlobalKey<State>();
-  final List<String> periods = [
-    'Personalizado',
-    'Hoje',
-    'Amanhã',
-    'Semana que vem',
-    'Mês que vem',
-    'Ano que vem'
-  ];
+  final List<String> periods = ['Personalizado', 'Hoje', 'Amanhã', 'Semana que vem', 'Mês que vem', 'Ano que vem'];
 
   @observable
   String success = '';
@@ -94,8 +87,7 @@ abstract class TaskStoreBase with Store {
 
   @computed
   bool get isFormValid {
-    return titleValid
-        && noteValid;
+    return titleValid && noteValid;
   }
 
   @computed
@@ -105,7 +97,22 @@ abstract class TaskStoreBase with Store {
 
   @action
   void _selectDateTime() {
-    selectDateTime = !selectDateTime;
+    showDatePicker(
+      context: observerKey.currentContext!,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(
+        const Duration(days: 365),
+      ),
+      cancelText: "Limpar",
+    ).then((value) {
+      if (value != null) {
+        date = value;
+        selectDateTime = true;
+      } else {
+        selectDateTime = false;
+      }
+    });
   }
 
   @computed

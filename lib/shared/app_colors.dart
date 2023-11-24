@@ -5,10 +5,10 @@ class AppColors {
   static const snackBarBackgroundErrorColor = Color(0xfff44336);
   static const disabledColor = Colors.grey;
   static const iconColor = Colors.blue;
-  static const inputBorderColor = Colors.white;
-  static const inputTextColor = Colors.white;
+  static const inputBorderColor = Colors.black;
+  static const inputTextColor = Colors.black;
   static const boxBorderColor = Colors.black;
   static const textPrimaryColor = Colors.black;
   static const textSecondaryColor = Colors.white;
-  static const backgroundColor = Colors.black;
+  static const backgroundColor = Colors.white;
 }
