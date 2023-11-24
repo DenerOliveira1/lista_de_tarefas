@@ -5,20 +5,21 @@ import 'package:get_it/get_it.dart';
 import '../../../shared/shared.dart';
 import '../../../stores/stores.dart';
 
-class AddTaskWidget extends StatelessWidget {
+class AddEditTaskWidget extends StatelessWidget {
   final TaskStore taskStore;
   final PageViewStore pageViewStore = GetIt.I<PageViewStore>();
 
-  AddTaskWidget(this.taskStore, {super.key});
+  AddEditTaskWidget(this.taskStore, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       key: taskStore.observerKey,
       color: AppColors.backgroundColor,
-      child: TextField(
+      child: TextFormField(
         autofocus: true,
         onChanged: taskStore.setTitle,
+        initialValue: taskStore.title,
         decoration: InputDecoration(
           suffixIcon: Observer(
             builder: (context) {

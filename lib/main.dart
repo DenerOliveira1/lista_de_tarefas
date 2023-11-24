@@ -85,6 +85,13 @@ class MyApp extends StatelessWidget {
               fontSize: 15,
             ),
           ),
+          checkboxTheme: const CheckboxThemeData(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(25),
+              ),
+            ),
+          ),
           disabledColor: AppColors.disabledColor,
           iconTheme: const IconThemeData(
             color: AppColors.iconColor,

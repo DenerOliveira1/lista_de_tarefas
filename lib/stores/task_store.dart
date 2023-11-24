@@ -15,6 +15,13 @@ abstract class TaskStoreBase with Store {
   final GlobalKey<State> observerKey = GlobalKey<State>();
   final List<String> periods = ['Personalizado', 'Hoje', 'Amanhã', 'Semana que vem', 'Mês que vem', 'Ano que vem'];
 
+  setup(TaskModel model) {
+    title = model.title;
+    date = model.date;
+    done = model.done;
+    index = model.index;
+  }
+
   @observable
   String success = '';
 
@@ -57,7 +64,13 @@ abstract class TaskStoreBase with Store {
   void setTime(TimeOfDay? value) => time = value;
 
   @action
-  void setDone(bool? value) => done = value ?? false;
+  void setDone(bool? value) async {
+    done = value ?? false;
+
+    TaskModel task = _generateModel();
+    await _tasksStore.localDataService.updateTask(index!, task.toString());
+    await _tasksStore.getTasks();
+  }
 
   bool get titleValid {
     return title.trim().isNotEmpty;

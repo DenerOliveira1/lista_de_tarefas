@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../shared/shared.dart';
 import '../../stores/stores.dart';
+import './widgets/widgets.dart';
 
 class DailyTab extends StatelessWidget {
   final TasksStore tasksStore = GetIt.I<TasksStore>();
@@ -28,9 +29,7 @@ class DailyTab extends StatelessWidget {
                 trailing: _buildCount(tasksStore.tasksToday.length),
                 children: tasksStore.tasksToday
                     .map(
-                      (e) => ListTile(
-                        title: Text(e.title),
-                      ),
+                      (e) => TaskWidget(e),
                     )
                     .toList(),
               );
@@ -43,9 +42,7 @@ class DailyTab extends StatelessWidget {
                 trailing: _buildCount(tasksStore.tasksTomorrow.length),
                 children: tasksStore.tasksTomorrow
                     .map(
-                      (e) => ListTile(
-                        title: Text(e.title),
-                      ),
+                      (e) => TaskWidget(e),
                     )
                     .toList(),
               );
@@ -58,9 +55,7 @@ class DailyTab extends StatelessWidget {
                 trailing: _buildCount(tasksStore.tasksForNextWeek.length),
                 children: tasksStore.tasksForNextWeek
                     .map(
-                      (e) => ListTile(
-                        title: Text(e.title),
-                      ),
+                      (e) => TaskWidget(e),
                     )
                     .toList(),
               );
@@ -73,9 +68,7 @@ class DailyTab extends StatelessWidget {
                 trailing: _buildCount(tasksStore.tasksForNextMonth.length),
                 children: tasksStore.tasksForNextMonth
                     .map(
-                      (e) => ListTile(
-                        title: Text(e.title),
-                      ),
+                      (e) => TaskWidget(e),
                     )
                     .toList(),
               );
@@ -88,9 +81,7 @@ class DailyTab extends StatelessWidget {
                 trailing: _buildCount(tasksStore.tasksForNextYear.length),
                 children: tasksStore.tasksForNextYear
                     .map(
-                      (e) => ListTile(
-                        title: Text(e.title),
-                      ),
+                      (e) => TaskWidget(e),
                     )
                     .toList(),
               );

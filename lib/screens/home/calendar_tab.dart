@@ -26,32 +26,8 @@ class CalendarTab extends StatelessWidget {
         onPressed: () {
           showDialog(
             context: context,
-            builder: (context) {
-              final TaskStore taskStore = TaskStore();
-
-              return AlertDialog(
-                title: Text("Add task", style: Theme.of(context).textTheme.titleLarge,),
-                content: AddTaskWidget(taskStore),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: Text("Cancelar"),
-                  ),
-                  Observer(
-                    builder: (context) {
-                      return TextButton(
-                        onPressed: taskStore.savePressed,
-                        child: Text("Adicionar"),
-                      );
-                    }
-                  ),
-                ],
-              );
-            },
+            builder: (context) => TaskDialogWidget(TaskStore()),
           );
-          /*pageViewStore.scaffoldKey.currentState?.showBottomSheet<void>((context) {
-            return AddTaskWidget();
-          });*/
         },
       ),
     );

@@ -73,7 +73,6 @@ abstract class TasksStoreBase with Store {
 
   Future<void> getTasks() async {
     tasks.clear();
-    tasksFiltered.clear();
 
     List<String> list = await localDataService.getTasks();
 
@@ -82,6 +81,8 @@ abstract class TasksStoreBase with Store {
       task.index = entry.key;
       tasks.add(task);
     }
+
+    filterTasks();
   }
 
   @action
